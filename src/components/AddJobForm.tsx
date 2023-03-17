@@ -28,22 +28,21 @@ const AddJobForm = () => {
   const [formData, setFormData] = useState({
     position_title: '',
     company: '',
+    website_link: '',
     location: '',
     application_status: '',
   })
-
+  console.log(JSON.stringify(formData))
   const handleSubmit = async (e: any) => {
     e.preventDefault()
     console.log('submit!')
     try {
       const res = await fetch('https://localhost:7165/api/JobTracker/Create', {
         method: 'POST',
-        body: JSON.stringify({
-          position_title: positionTitle,
-          company: company,
-          location: location,
-          application_status: status,
-        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       })
       const resJson = await res.json()
       if (res.status === 200) {
@@ -69,7 +68,7 @@ const AddJobForm = () => {
           id="position-title"
           variant="standard"
           onChange={(e) => {
-            setPositionTitle(e.target.value)
+            setFormData({ ...formData, position_title: e.target.value })
           }}
         />
       </div>
@@ -79,29 +78,45 @@ const AddJobForm = () => {
           id="company"
           variant="standard"
           onChange={(e) => {
-            setCompany(e.target.value)
+            setFormData({ ...formData, company: e.target.value })
           }}
         />
       </div>
       <div>
         <label>Location: </label>
-        <TextField id="location" variant="standard" />
+        <TextField
+          id="location"
+          variant="standard"
+          onChange={(e) => {
+            setFormData({ ...formData, location: e.target.value })
+          }}
+        />
+      </div>
+      <div>
+        <label>Website: </label>
+        <TextField
+          id="website"
+          variant="standard"
+          onChange={(e) => {
+            setFormData({ ...formData, website_link: e.target.value })
+          }}
+        />
       </div>
       <div>
         <label>Application status: </label>
         <TextField
           id="select-application-status"
           select
-          defaultValue="0"
+          defaultValue="application sent"
           variant="standard"
           onChange={(e) => {
-            setStatus(e.target.value)
+            setFormData({ ...formData, application_status: e.target.value })
           }}
         >
-          <MenuItem value={0}>Application sent</MenuItem>
-          <MenuItem value={1}>In progress</MenuItem>
-          <MenuItem value={2}>Offer</MenuItem>
-          <MenuItem value={3}>Rejection</MenuItem>
+          <MenuItem value={'application sent'}>Application sent</MenuItem>
+          <MenuItem value={'in progress'}>In progress</MenuItem>
+          <MenuItem value={'offer'}>Offer</MenuItem>
+          <MenuItem value={'rejection'}>Rejection</MenuItem>
         </TextField>
       </div>
       <Button variant="contained" type="submit">
