@@ -1,28 +1,11 @@
 import * as React from 'react'
-import styled from '@emotion/styled'
-import { ApplicationStatus } from './JobInfoCard'
 import Button from '@mui/material/Button'
-import NativeSelect from '@mui/material/NativeSelect'
-import InputLabel from '@mui/material/InputLabel'
 import TextField from '@mui/material/TextField'
 import { useState } from 'react'
 import { MenuItem } from '@mui/material'
-import { IJobObject } from './JobInfoCard'
-
-// export interface IJobObject {
-//     id: number
-//     position_title: string
-//     company: string
-//     application_status: ApplicationStatus
-//     location: string
-//   }
 
 const AddJobForm = () => {
   const [id, setId] = useState(0)
-  const [positionTitle, setPositionTitle] = useState('')
-  const [company, setCompany] = useState('')
-  const [location, setLocation] = useState('')
-  const [status, setStatus] = useState('')
   const [message, setMessage] = useState('')
 
   const [formData, setFormData] = useState({
@@ -30,7 +13,7 @@ const AddJobForm = () => {
     company: '',
     website_link: '',
     location: '',
-    application_status: '',
+    application_status: 'application sent',
   })
   console.log(JSON.stringify(formData))
   const handleSubmit = async (e: any) => {
@@ -46,10 +29,13 @@ const AddJobForm = () => {
       })
       const resJson = await res.json()
       if (res.status === 200) {
-        setPositionTitle('')
-        setCompany('')
-        setLocation('')
-        setStatus('')
+        setFormData({
+          position_title: '',
+          company: '',
+          website_link: '',
+          location: '',
+          application_status: 'application sent',
+        })
         setMessage('Added successfully')
       } else {
         setMessage('Some error occured, please check your inputs')

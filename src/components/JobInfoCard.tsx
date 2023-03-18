@@ -9,6 +9,7 @@ import { Button, Divider, Stack } from '@mui/material'
 //import Chip from '@mui/material/Chip'
 import Chip from './Chip'
 import { JobInfoDetailDisplay } from './JobInfoDetailDisplay'
+import DeleteButton from './DeleteButton'
 
 type Props = {
   index: number
@@ -90,7 +91,7 @@ export default function JobInfoCard({ index, jobListing }: Props) {
             direction="row"
             divider={<Divider orientation="vertical" flexItem />}
             spacing={2}
-            sx={{ width: '77%', flexShrink: 0 }}
+            sx={{ width: '60%', flexShrink: 0 }}
           >
             <Typography>{index + 1}</Typography>
             <Typography>{positionTitle}</Typography>

@@ -3,9 +3,10 @@ import { useState, useEffect } from 'react'
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import JobInfoCard from './JobInfoCard'
+import ListTesting from './ListTesting'
 
 export default function JobInfoCardList() {
-  const [jobListings, setJobListing] = useState([])
+  const [jobListings, setJobListing] = useState<[]>([])
 
   const fetchData = async () => {
     return await fetch('https://localhost:7165/api/JobTracker/GetAll')
@@ -23,11 +24,7 @@ export default function JobInfoCardList() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Stack flex-start="true" spacing={2}>
-        {jobListings.map((jobListing, i) => {
-          return <JobInfoCard index={i} jobListing={jobListing} key={i} />
-        })}
-      </Stack>
+      <ListTesting list={jobListings}></ListTesting>
     </Box>
   )
 }
