@@ -47,7 +47,7 @@ const AddJobForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>Add a new job listing here</div>
+      <div>Add a new job application here</div>
       <div>
         <label>Position title: </label>
         <TextField

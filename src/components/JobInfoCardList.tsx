@@ -1,25 +1,37 @@
 import * as React from 'react'
 import { useState, useEffect } from 'react'
 import Box from '@mui/material/Box'
-import Stack from '@mui/material/Stack'
-import JobInfoCard from './JobInfoCard'
-import ListTesting from './ListTesting'
+import ListTesting from './ListTable'
+import JobTrackerService from '../JobTrackerService'
 
+export interface IJobObject {
+  id: number
+  position_title: string
+  company: string
+  application_status: ApplicationStatus
+  location: string
+}
+
+export enum ApplicationStatus {
+  ApplicationSent = 'application sent',
+  InProgress = 'in progress',
+  Offer = 'offer',
+  Rejection = 'rejection',
+  Placeholder = 'status',
+}
 export default function JobInfoCardList() {
-  const [jobListings, setJobListing] = useState<[]>([])
-
-  const fetchData = async () => {
-    return await fetch('https://localhost:7165/api/JobTracker/GetAll')
-      .then((res) => {
-        return res.json()
-      })
-      .then((data) => {
-        setJobListing(data)
-      })
-  }
+  const [jobListings, setJobListing] = useState<[IJobObject]>([
+    {
+      id: 0,
+      position_title: '',
+      company: '',
+      application_status: ApplicationStatus.Placeholder,
+      location: '',
+    },
+  ])
 
   useEffect(() => {
-    fetchData()
+    JobTrackerService.getJobList().then((res) => setJobListing(res.data))
   }, [])
 
   return (

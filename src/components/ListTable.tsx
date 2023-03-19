@@ -7,6 +7,7 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Chip from './Chip'
+import DeleteButton from './DeleteButton'
 
 interface Column {
   id: 'order' | 'position' | 'company' | 'location' | 'website' | 'status'
@@ -54,8 +55,17 @@ enum ApplicationStatus {
   Rejection = 'rejection',
   Placeholder = 'status',
 }
+interface IJobObject {
+  [key: string]: any
+  id: number
+  position_title: string
+  company: string
+  application_status: ApplicationStatus
+  location: string
+}
+
 type Props = {
-  list: []
+  list: [IJobObject]
 }
 const setChipColor4Application = (status: ApplicationStatus) => {
   let color = '#f1f1f1'
@@ -74,7 +84,7 @@ const setChipColor4Application = (status: ApplicationStatus) => {
   }
   return color
 }
-export default function StickyHeadTabl({ list }: Props) {
+export default function ListTesting({ list }: Props) {
   console.log(list)
 
   return (
@@ -92,6 +102,9 @@ export default function StickyHeadTabl({ list }: Props) {
                   {column.label}
                 </TableCell>
               ))}
+              <TableCell align="center" style={{ minWidth: 150 }}>
+                Options
+              </TableCell>
             </TableRow>
           </TableHead>
 
@@ -135,6 +148,9 @@ export default function StickyHeadTabl({ list }: Props) {
                       </TableCell>
                     )
                   })}
+                  <TableCell align="center">
+                    <DeleteButton id={listing.id} /> open
+                  </TableCell>
                 </TableRow>
               )
             })}
