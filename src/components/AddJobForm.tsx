@@ -15,7 +15,9 @@ const AddJobForm = () => {
     location: '',
     application_status: 'application sent',
   })
+
   console.log(JSON.stringify(formData))
+
   const handleSubmit = async (e: any) => {
     e.preventDefault()
     console.log('submit!')

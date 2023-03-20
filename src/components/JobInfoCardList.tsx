@@ -1,8 +1,7 @@
 import * as React from 'react'
 import { useState, useEffect } from 'react'
 import Box from '@mui/material/Box'
-import ListTesting from './ListTable'
-import JobTrackerService from '../JobTrackerService'
+import ListTesting from './JobListDisplay/ListTable'
 
 export interface IJobObject {
   id: number

@@ -6,8 +6,8 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
-import Chip from './Chip'
-import DeleteButton from './DeleteButton'
+import Chip from '../Chip'
+import DeleteButton from '../DeleteButton'
 
 interface Column {
   id: 'order' | 'position' | 'company' | 'location' | 'website' | 'status'
@@ -84,7 +84,7 @@ const setChipColor4Application = (status: ApplicationStatus) => {
   }
   return color
 }
-export default function ListTesting({ list }: Props) {
+export const ListTable = ({ list }: Props) => {
   console.log(list)
 
   return (
