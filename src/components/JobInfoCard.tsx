@@ -1,3 +1,4 @@
+// TODO: check if using this file
 import * as React from 'react'
 import { SyntheticEvent, useState } from 'react'
 import Accordion from '@mui/material/Accordion'
@@ -9,7 +10,7 @@ import { Button, Divider, Stack } from '@mui/material'
 //import Chip from '@mui/material/Chip'
 import Chip from './Chip'
 import { JobInfoDetailDisplay } from './JobInfoDetailDisplay'
-import DeleteButton from './DeleteButton'
+import { ApplicationStatus, IJobObject } from '../hooks/useJobListings'
 
 type Props = {
   index: number
@@ -19,22 +20,6 @@ type Props = {
   applicationStatus?: ApplicationStatus
   note?: string
   jobListing: IJobObject
-}
-
-export interface IJobObject {
-  id: number
-  position_title: string
-  company: string
-  application_status: ApplicationStatus
-  location: string
-}
-
-export enum ApplicationStatus {
-  ApplicationSent = 'application sent',
-  InProgress = 'in progress',
-  Offer = 'offer',
-  Rejection = 'rejection',
-  Placeholder = 'status',
 }
 
 export default function JobInfoCard({ index, jobListing }: Props) {

@@ -1,21 +1,21 @@
 import * as React from 'react'
 import IconButton from '@mui/material/IconButton'
 import DeleteIcon from '@mui/icons-material/Delete'
-import JobTrackerService from '../JobTrackerService'
-import { IJobObject } from './JobInfoCardList'
+import { useJobTrackerService } from '../hooks/useJobTrackerService'
 
 type Props = {
   id: number
 }
 
 const DeleteButton = ({ id }: Props) => {
+  const { deleteJobListing } = useJobTrackerService()
+
   const handleOnClick = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     id: number,
   ) => {
     console.log(id)
-    // JobTrackerService.deleteJobListing(id).then(data => setJobListing(data))
-    JobTrackerService.deleteJobListing(id)
+    deleteJobListing(id)
   }
   return (
     <IconButton

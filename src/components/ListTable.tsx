@@ -8,6 +8,7 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Chip from './Chip'
 import DeleteButton from './DeleteButton'
+import { ApplicationStatus, IJobObject } from '../hooks/useJobListings'
 
 interface Column {
   id: 'order' | 'position' | 'company' | 'location' | 'website' | 'status'
@@ -48,25 +49,11 @@ const columns: readonly Column[] = [
     listItem: 'website_link',
   },
 ]
-enum ApplicationStatus {
-  ApplicationSent = 'application sent',
-  InProgress = 'in progress',
-  Offer = 'offer',
-  Rejection = 'rejection',
-  Placeholder = 'status',
-}
-interface IJobObject {
-  [key: string]: any
-  id: number
-  position_title: string
-  company: string
-  application_status: ApplicationStatus
-  location: string
-}
 
 type Props = {
-  list: [IJobObject]
+  list: IJobObject[]
 }
+
 const setChipColor4Application = (status: ApplicationStatus) => {
   let color = '#f1f1f1'
   switch (status) {
@@ -84,9 +71,8 @@ const setChipColor4Application = (status: ApplicationStatus) => {
   }
   return color
 }
-export default function ListTesting({ list }: Props) {
-  console.log(list)
 
+export default function ListTesting({ list }: Props) {
   return (
     <Paper sx={{ width: '100%' }}>
       <TableContainer>
@@ -113,7 +99,7 @@ export default function ListTesting({ list }: Props) {
               return (
                 <TableRow hover role="checkbox" tabIndex={-1} key={i}>
                   {columns.map((column) => {
-                    let value = listing[column.listItem]
+                    const value = listing[column.listItem]
                     if (column.listItem == 'id') {
                       return (
                         <TableCell key={column.listItem} align={column.align}>
