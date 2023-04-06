@@ -11,8 +11,7 @@ import Grid from '@mui/material/Grid'
 import Item from '@mui/material/Grid'
 import Header from '../components/Header/Header'
 import Form from '../components/Form/Form'
-import CustomColor from '../components/Theme/Theme'
-import { InputField, SelectField } from '../components/Form/InputField'
+import ApplicationTable from '../components/Table/ApplicationTable'
 
 export default function HomePage() {
   return (
@@ -39,9 +38,7 @@ export default function HomePage() {
       </Grid>
       <Grid item xs={0.72}></Grid>
       <Grid item xs={10.56}>
-        <InputField id="location" name="Location"></InputField>
-        {/* <SelectField></SelectField> */}
-        <Item>second middle</Item>
+        <ApplicationTable />
       </Grid>
       <Grid item xs={0.72}></Grid>
       <Grid item xs={12}>

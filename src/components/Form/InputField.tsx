@@ -1,44 +1,30 @@
 import * as React from 'react'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
-
-import Box from '@mui/material/Box'
-import Paper from '@mui/material/Paper'
-import Grid from '@mui/material/Grid'
-import Item from '@mui/material/Grid'
-import Input from '@mui/material/Input'
-import InputLabel from '@mui/material/InputLabel'
-import { FormControl, MenuItem, Select } from '@mui/material'
-
-const theme = createTheme({
-  palette: {
-    neutral: {
-      main: '#ffd803',
-      contrastText: '#fff',
-    },
-  },
-})
+import { MenuItem } from '@mui/material'
+import { useState } from 'react'
 
 declare module '@mui/material/styles' {
   interface Palette {
     neutral: Palette['primary']
   }
 
-  // allow configuration using `createTheme`
   interface PaletteOptions {
     neutral?: PaletteOptions['primary']
   }
 }
 
-// Update the Input's color prop options
-declare module '@mui/material/Input' {
-  interface InputPropsColorOverrides {
-    neutral: true
-  }
-}
-declare module '@mui/material/InputLabel' {
-  interface InputLabelPropsColorOverrides {
+const theme = createTheme({
+  palette: {
+    neutral: {
+      main: '#ffd803',
+      contrastText: '#272343',
+    },
+  },
+})
+
+declare module '@mui/material/TextField' {
+  interface TextFieldPropsColorOverrides {
     neutral: true
   }
 }
@@ -51,20 +37,41 @@ type inputFieldProps = {
 export const InputField = ({ id, name }: inputFieldProps) => {
   return (
     <ThemeProvider theme={theme}>
-      <FormControl variant="standard" size="small" sx={{ mx: 'auto' }}>
-        <InputLabel htmlFor={id} color="neutral">
-          {name}
-        </InputLabel>
-        <Input id={id} color="neutral" />
-      </FormControl>
+      <TextField
+        id={id}
+        color="neutral"
+        label={name}
+        size="small"
+        variant="standard"
+      />
     </ThemeProvider>
   )
 }
 
 export const SelectField = () => {
+  const [value, setValue] = useState(1)
+
+  const handleChange = (e: any) => {
+    setValue(e.target.value)
+  }
   return (
     <ThemeProvider theme={theme}>
-      <TextField color="neutral">neutral</TextField>
+      <TextField
+        id="standard-select-currency"
+        select
+        label="Status"
+        value={value}
+        onChange={handleChange}
+        variant="standard"
+        color="neutral"
+        size="small"
+        sx={{ minWidth: 182 }}
+      >
+        <MenuItem value={1}>Applied</MenuItem>
+        <MenuItem value={2}>In progress</MenuItem>
+        <MenuItem value={3}>Offer</MenuItem>
+        <MenuItem value={4}>Rejected</MenuItem>
+      </TextField>
     </ThemeProvider>
   )
 }
