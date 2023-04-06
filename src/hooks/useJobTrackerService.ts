@@ -1,4 +1,5 @@
 import axios, { AxiosError } from 'axios'
+import { useEffect } from 'react'
 import { IJobObject } from './useJobListings'
 
 export const useJobTrackerService = () => {
@@ -47,6 +48,10 @@ export const useJobTrackerService = () => {
     console.log({ response })
     return response
   }
+
+  // useEffect(() => {
+  //   console.log('from tracker service')
+  // }, [addJobListing])
 
   return {
     getAllJobListings,

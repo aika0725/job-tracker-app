@@ -72,7 +72,7 @@ const setChipColor4Application = (status: ApplicationStatus) => {
   return color
 }
 
-export default function ListTesting({ list }: Props) {
+export default function ListTable({ list }: Props) {
   return (
     <Paper sx={{ width: '100%' }}>
       <TableContainer>
@@ -134,6 +134,7 @@ export default function ListTesting({ list }: Props) {
                       </TableCell>
                     )
                   })}
+                  {/* TODO: Makesure the id alway exists */}
                   <TableCell align="center">
                     <DeleteButton id={listing.id} /> open
                   </TableCell>

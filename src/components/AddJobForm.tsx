@@ -29,7 +29,7 @@ const AddJobForm = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSubmit = async (e: any) => {
     e.preventDefault()
-
+    console.log('sumbimt')
     await addJobListing(formData)
       .then((res) => {
         setFormData(formDataDefault)

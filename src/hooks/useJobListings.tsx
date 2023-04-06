@@ -22,7 +22,6 @@ export enum ApplicationStatus {
 }
 
 export interface IJobObject {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any
   id?: number
   position_title: string

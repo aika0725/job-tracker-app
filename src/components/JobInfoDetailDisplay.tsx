@@ -3,14 +3,14 @@ import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
-import { ApplicationStatus } from './JobInfoCard'
 
+//TODO change the application status type
 type Props = {
   index: number
   positionTitle?: string
   company?: string
   location?: string
-  applicationStatus?: ApplicationStatus
+  applicationStatus?: string
   note?: string
 }
 export const JobInfoDetailDisplay = () => {

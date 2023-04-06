@@ -7,20 +7,46 @@ import OptionBar from '../components/OptionBar'
 import styles from '../styles/Home.module.scss'
 import { JobListingContext } from '../hooks/useJobListings'
 
+import Grid from '@mui/material/Grid'
+import Item from '@mui/material/Grid'
+import Header from '../components/Header/Header'
+import Form from '../components/Form/Form'
+import CustomColor from '../components/Theme/Theme'
+import { InputField, SelectField } from '../components/Form/InputField'
+
 export default function HomePage() {
   return (
-    <JobListingContext>
-      <div className={styles.container}>
-        <Head>
-          <title>Job application tracker v1.0</title>
-          <meta name="description" content="Your job application tracker" />
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <AppHeader></AppHeader>
-        <OptionBar></OptionBar>
-        <JobInfoCardList />
-        <AddJobForm />
-      </div>
-    </JobListingContext>
+    // <JobListingContext>
+    //   <div className={styles.container}>
+    //     <Head>
+    //       <title>Job application tracker v1.0</title>
+    //       <meta name="description" content="Your job application tracker" />
+    //       <link rel="icon" href="/favicon.ico" />
+    //     </Head>
+    //     <AppHeader></AppHeader>
+    //     <OptionBar></OptionBar>
+    //     <JobInfoCardList />
+    //     <AddJobForm />
+    //   </div>
+    // </JobListingContext>
+
+    <Grid container spacing={2}>
+      <Grid item xs={12}>
+        <Header></Header>
+      </Grid>
+      <Grid item xs={12}>
+        <Form></Form>
+      </Grid>
+      <Grid item xs={0.72}></Grid>
+      <Grid item xs={10.56}>
+        <InputField id="location" name="Location"></InputField>
+        {/* <SelectField></SelectField> */}
+        <Item>second middle</Item>
+      </Grid>
+      <Grid item xs={0.72}></Grid>
+      <Grid item xs={12}>
+        <Item>last</Item>
+      </Grid>
+    </Grid>
   )
 }

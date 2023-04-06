@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled from '@emotion/styled'
-import { ApplicationStatus } from './JobInfoCard'
+import { ApplicationStatus } from '../hooks/useJobListings'
 
 type StyledChipProps = {
   status?: boolean
